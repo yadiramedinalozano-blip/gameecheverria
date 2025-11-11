@@ -6,9 +6,14 @@
   <title>Elige tu personaje — Colapso sur</title>
   <link rel="stylesheet" href="style.css"/>
   <style>
-    .wrap{max-width:900px;margin:0 auto}
-    .grid{display:grid;gap:1rem}
-    @media(min-width:840px){ .grid{grid-template-columns:repeat(2,1fr)} }
+    .wrap{max-width:960px;margin:0 auto}
+    .context{background:rgba(20,20,25,.55);border:1px solid rgba(255,255,255,.12);
+      border-radius:12px;padding:1rem 1.2rem;margin-bottom:1rem;text-align:left}
+    .context p{margin:.6rem 0;color:var(--text)}
+    .hero-img{display:block;width:100%;max-width:920px;margin:1rem auto;border-radius:10px;
+      border:1px solid rgba(255,255,255,.12);box-shadow:0 6px 18px rgba(0,0,0,.25)}
+    .grid{display:grid;gap:1rem;margin-top:1rem}
+    @media(min-width:900px){ .grid{grid-template-columns:repeat(2,1fr)} }
     .card{background:rgba(20,20,25,.55);border:1px solid rgba(255,255,255,.12);
       border-radius:12px;padding:1rem;text-align:left}
     .card h3{margin:.2rem 0 .4rem}
@@ -21,40 +26,61 @@
 <body>
   <div class="container wrap">
     <header>
+      <h1>Colapso ecológico · 2030</h1>
+      <p class="subtitle">Contexto breve y elección de personaje</p>
+    </header>
+
+    <!-- Contexto histórico -->
+    <section class="context">
+      <p>
+        En 2030 la cadena climática se rompió: olas de calor, lluvias ácidas y mareas altas
+        reescribieron los mapas. Las ciudades latinoamericanas quedaron cubiertas por sal,
+        moho y enredaderas. La producción se detuvo; la vida, no.
+      </p>
+      <p>
+        De lo humano quedaron cuatro líneas de supervivencia, mutaciones nacidas del ambiente
+        y del hábito. Esta es la superficie de ese nuevo mundo.
+      </p>
+    </section>
+
+    <!-- Imagen central -->
+    <img src="imagenes/ciudad.png" alt="Ciudad latinoamericana tras el colapso" class="hero-img"/>
+
+    <header>
       <h1>Elige tu personaje</h1>
-      <p class="subtitle">Cuatro formas de sobrevivir después del colapso ecológico.</p>
+      <p class="subtitle">Cuatro formas de sobrevivir después del colapso.</p>
     </header>
 
     <main class="grid">
       <!-- Clásico -->
       <article class="card">
-        <h3>Durmiente — (clásico)</h3>
-        <p>Expuestos durante meses a cielos quemados, sus cuerpos comenzaron a emitir luz. 
-           La piel se cuarteó con barro y polvo fino; cuando descansan, se petrifican por horas.</p>
+        <h3>Durmiente</h3>
+        <p>Meses bajo cielos quemados activaron una luminiscencia en la piel.
+           La superficie se cuarteó con polvo y barro; al dormir, se petrifican temporalmente.</p>
         <button class="choice" data-ethos="clasico" data-name="Durmiente">Elegir Durmiente</button>
       </article>
 
       <!-- Barroco -->
       <article class="card">
-        <h3>Errante — (barroco)</h3>
-        <p>Nacidos de restos mezclados de animales, telas y metales tras derrumbes de templos y mercados.
-           Fueron ensamblados con fragmentos: nada puro, todo vivo.</p>
+        <h3>Errante</h3>
+        <p>Forjados por derrumbes y restos: fibras, telas, metal y hueso se unieron.
+           No quedó pureza; quedó mezcla funcional que resiste.</p>
         <button class="choice" data-ethos="barroco" data-name="Errante">Elegir Errante</button>
       </article>
 
       <!-- Romántico -->
       <article class="card">
-        <h3>Fungi — (romántico)</h3>
-        <p>Las lluvias ácidas abrieron la piel y el micelio ocupó su lugar. 
-           Guardan memoria en esporas que brillan débilmente cuando recuerdan.</p>
+        <h3>Fungi</h3>
+        <p>Las lluvias ácidas abrieron pasos al micelio. Las esporas bioluminiscentes
+           almacenan recuerdos y brotan cuando el ambiente se humedece.</p>
         <button class="choice" data-ethos="romantico" data-name="Fungi">Elegir Fungi</button>
       </article>
 
       <!-- Realista -->
       <article class="card">
-        <h3>Residuales — (realista)</h3>
-        <p>Tras el apagón global, algunos cuerpos siguieron moviéndose por rutina. 
-           Respiración lenta, mirada vacía: sobrevivieron a fuerza de hábito.</p>
+        <h3>Residuales</h3>
+        <p>Tras el apagón global, continuaron moviéndose por rutina. Metabolismo lento,
+           mirada vacía: supervivencia por inercia operativa.</p>
         <button class="choice" data-ethos="realista" data-name="Residual">Elegir Residual</button>
       </article>
     </main>
@@ -63,18 +89,16 @@
   </div>
 
   <script>
-    // Guardamos la elección para usarla luego (puntos y rutas)
     const KEY = 'ethos_choice_v1';
     document.querySelectorAll('.choice').forEach(b=>{
       b.addEventListener('click', ()=>{
         const choice = { nombre: b.dataset.name, ethos: b.dataset.ethos };
         localStorage.setItem(KEY, JSON.stringify(choice));
-        document.getElementById('msg').textContent = 
-          `Elegiste: ${choice.nombre}. (Guardado)`;
-        // Aquí luego enviaremos a la siguiente página:
-        // window.location.href = 'ciudades.html';
+        document.getElementById('msg').textContent = `Elegiste: ${choice.nombre}. (Guardado)`;
+        // Luego: window.location.href = 'ciudades.html';
       });
     });
   </script>
 </body>
 </html>
+
