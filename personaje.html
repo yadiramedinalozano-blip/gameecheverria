@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Elige tu personaje — Colapso sur</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .wrap{max-width:900px;margin:0 auto}
+    .grid{display:grid;gap:1rem}
+    @media(min-width:840px){ .grid{grid-template-columns:repeat(2,1fr)} }
+    .card{background:rgba(20,20,25,.55);border:1px solid rgba(255,255,255,.12);
+      border-radius:12px;padding:1rem;text-align:left}
+    .card h3{margin:.2rem 0 .4rem}
+    .card p{margin:0 0 .8rem;color:var(--muted)}
+    .choice{display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#111;border:none;border-radius:.6rem;padding:.55rem .9rem;font-weight:700;cursor:pointer}
+    .msg{margin-top:1rem;color:var(--muted);text-align:center}
+  </style>
+</head>
+<body>
+  <div class="container wrap">
+    <header>
+      <h1>Elige tu personaje</h1>
+      <p class="subtitle">Cuatro formas de sobrevivir después del colapso ecológico.</p>
+    </header>
+
+    <main class="grid">
+      <!-- Clásico -->
+      <article class="card">
+        <h3>Durmiente — (clásico)</h3>
+        <p>Expuestos durante meses a cielos quemados, sus cuerpos comenzaron a emitir luz. 
+           La piel se cuarteó con barro y polvo fino; cuando descansan, se petrifican por horas.</p>
+        <button class="choice" data-ethos="clasico" data-name="Durmiente">Elegir Durmiente</button>
+      </article>
+
+      <!-- Barroco -->
+      <article class="card">
+        <h3>Errante — (barroco)</h3>
+        <p>Nacidos de restos mezclados de animales, telas y metales tras derrumbes de templos y mercados.
+           Fueron ensamblados con fragmentos: nada puro, todo vivo.</p>
+        <button class="choice" data-ethos="barroco" data-name="Errante">Elegir Errante</button>
+      </article>
+
+      <!-- Romántico -->
+      <article class="card">
+        <h3>Fungi — (romántico)</h3>
+        <p>Las lluvias ácidas abrieron la piel y el micelio ocupó su lugar. 
+           Guardan memoria en esporas que brillan débilmente cuando recuerdan.</p>
+        <button class="choice" data-ethos="romantico" data-name="Fungi">Elegir Fungi</button>
+      </article>
+
+      <!-- Realista -->
+      <article class="card">
+        <h3>Residuales — (realista)</h3>
+        <p>Tras el apagón global, algunos cuerpos siguieron moviéndose por rutina. 
+           Respiración lenta, mirada vacía: sobrevivieron a fuerza de hábito.</p>
+        <button class="choice" data-ethos="realista" data-name="Residual">Elegir Residual</button>
+      </article>
+    </main>
+
+    <p class="msg" id="msg">Elige uno para continuar…</p>
+  </div>
+
+  <script>
+    // Guardamos la elección para usarla luego (puntos y rutas)
+    const KEY = 'ethos_choice_v1';
+    document.querySelectorAll('.choice').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        const choice = { nombre: b.dataset.name, ethos: b.dataset.ethos };
+        localStorage.setItem(KEY, JSON.stringify(choice));
+        document.getElementById('msg').textContent = 
+          `Elegiste: ${choice.nombre}. (Guardado)`;
+        // Aquí luego enviaremos a la siguiente página:
+        // window.location.href = 'ciudades.html';
+      });
+    });
+  </script>
+</body>
+</html>
