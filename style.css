@@ -11,7 +11,13 @@
 html, body {
   margin: 0;
   height: 100%;
-  background: radial-gradient(circle at top left, var(--bg2), var(--bg1));
+
+  /* 🌆 Imagen de fondo añadida aquí */
+  background: 
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), /* filtro oscuro encima */
+    url("imagen_inicio.jpg") no-repeat center center fixed;
+
+  background-size: cover; /* hace que la imagen llene toda la pantalla */
   color: var(--text);
   font-family: var(--font);
   display: flex;
@@ -62,10 +68,12 @@ button {
   transition: 0.25s ease;
   font-weight: 600;
 }
+
 button:hover {
   transform: scale(1.05);
   box-shadow: 0 0 10px rgba(255,255,255,0.2);
 }
+
 footer {
   margin-top: 2rem;
   color: var(--muted);
