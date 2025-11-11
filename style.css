@@ -12,14 +12,16 @@ html, body {
   margin: 0;
   height: 100%;
 
-  /* 🌆 Imagen de fondo añadida aquí */
-  background: 
-    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), /* filtro oscuro encima */
+  /* Fondo con imagen y filtro suave encima */
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), /* filtro más ligero */
     url("fondo.jpg") no-repeat center center fixed;
 
   background-size: cover; /* hace que la imagen llene toda la pantalla */
   color: var(--text);
   font-family: var(--font);
+
+  /* Centrado del contenido */
   display: flex;
   justify-content: center;
   align-items: center;
