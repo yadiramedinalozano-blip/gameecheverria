@@ -14,7 +14,7 @@ html, body {
 
   background-image: 
     linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    url("fondo.jpg");
+    url("fondo.png");
   
   background-repeat: repeat;
   background-position: top left;
