@@ -12,16 +12,18 @@ html, body {
   margin: 0;
   height: 100%;
 
-  /* Fondo con imagen y filtro suave encima */
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), /* filtro más ligero */
-    url("fondo.jpg") no-repeat center center fixed;
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("fondo.jpg");
+  
+  background-repeat: repeat;
+  background-position: top left;
+  background-attachment: fixed;
+  background-size: auto;
 
-  background-size: cover; /* hace que la imagen llene toda la pantalla */
   color: var(--text);
   font-family: var(--font);
 
-  /* Centrado del contenido */
   display: flex;
   justify-content: center;
   align-items: center;
