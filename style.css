@@ -15,7 +15,7 @@ html, body {
   /* 🌆 Imagen de fondo añadida aquí */
   background: 
     linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), /* filtro oscuro encima */
-    url("imagen_inicio.jpg") no-repeat center center fixed;
+    url("fondo.jpg") no-repeat center center fixed;
 
   background-size: cover; /* hace que la imagen llene toda la pantalla */
   color: var(--text);
