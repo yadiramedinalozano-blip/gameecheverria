@@ -27,15 +27,15 @@
          Sientes que tus decisiones han trazado un patrón.
          Es momento de ver qué mundo ayudaste a construir.</p>
 
-      <!-- Este botón suma un último punto (puedes cambiar el ethos) -->
-      <button class="decidir btn" data-ethos="barroco" data-points="1">Avanzar al final</button>
+      <!-- Este botón ya NO suma puntos, solo avanza -->
+      <button id="go-final" class="btn">Avanzar al final</button>
     </section>
   </div>
 
-  <script src="js/game.js"></script>
   <script>
-    // después de presionar el botón, suma puntos y va a final.html
-    bindDecisionButtons('final.html');
+    document.getElementById('go-final').addEventListener('click', ()=>{
+      window.location.href = 'final.html';
+    });
   </script>
 </body>
 </html>
