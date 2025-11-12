@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Última decisión — Colapso sur</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .wrap{max-width:900px;margin:0 auto;text-align:center}
+    .box{background:rgba(20,20,25,.55);border:1px solid rgba(255,255,255,.12);
+      border-radius:12px;padding:2rem;margin-top:3rem}
+    .btn{background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#111;border:none;border-radius:8px;padding:.8rem 1.6rem;
+      font-weight:700;cursor:pointer;transition:.2s}
+    .btn:hover{transform:scale(1.05);box-shadow:0 0 12px rgba(255,255,255,.2)}
+  </style>
+</head>
+<body>
+  <div class="container wrap">
+    <header>
+      <h1>Última escena</h1>
+      <p class="subtitle">El colapso tiene un eco final...</p>
+    </header>
+
+    <section class="box">
+      <p>Las luces de la ciudad se apagan una a una. 
+         Sientes que tus decisiones han trazado un patrón.
+         Es momento de ver qué mundo ayudaste a construir.</p>
+
+      <!-- Este botón suma un último punto (puedes cambiar el ethos) -->
+      <button class="decidir btn" data-ethos="barroco" data-points="1">Avanzar al final</button>
+    </section>
+  </div>
+
+  <script src="js/game.js"></script>
+  <script>
+    // después de presionar el botón, suma puntos y va a final.html
+    bindDecisionButtons('final.html');
+  </script>
+</body>
+</html>
