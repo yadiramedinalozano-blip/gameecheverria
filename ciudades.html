@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Ciudades — Colapso sur</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .wrap{max-width:960px;margin:0 auto}
+    .intro{background:rgba(20,20,25,.55);border:1px solid rgba(255,255,255,.12);
+      border-radius:12px;padding:1.2rem;text-align:left;margin-bottom:1.2rem}
+    .intro p{margin:.5rem 0;color:var(--text)}
+    .city-grid{display:grid;gap:1rem;margin-top:1rem}
+    @media(min-width:700px){.city-grid{grid-template-columns:repeat(2,1fr)}}
+    .city-card{background:rgba(20,20,25,.55);border:1px solid rgba(255,255,255,.12);
+      border-radius:12px;padding:1rem;text-align:left;transition:.25s}
+    .city-card:hover{transform:translateY(-3px);box-shadow:0 0 10px rgba(255,255,255,0.15)}
+    .city-card img{width:100%;border-radius:10px;margin-bottom:.5rem}
+    .city-card button{background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#111;border:none;padding:.6rem 1rem;border-radius:8px;cursor:pointer;font-weight:700}
+  </style>
+</head>
+<body>
+  <div class="container wrap">
+    <header>
+      <h1>Escoge una ciudad</h1>
+      <p class="subtitle">Dos núcleos que sobrevivieron al colapso: una en la altura, otra en el concreto.</p>
+    </header>
+
+    <section class="intro">
+      <p>La tierra se partió en islas urbanas donde la vida aprendió a sostenerse.
+         Cada capital guarda un ritmo distinto: una respira con las montañas,
+         la otra con el eco metálico de las avenidas vacías.</p>
+    </section>
+
+    <main class="city-grid">
+      <!-- QUITO -->
+      <article class="city-card">
+        <img src="imagenes/quito.png" alt="Quito postapocalíptico">
+        <h3>Quito</h3>
+        <p>En la altura, las nubes raspan los restos de vidrio y piedra. 
+           Las terrazas se volvieron huertos, y las calles, ríos de niebla.</p>
+        <button data-city="quito">Entrar a Quito</button>
+      </article>
+
+      <!-- CIUDAD DE MÉXICO -->
+      <article class="city-card">
+        <img src="imagenes/mexico.png" alt="Ciudad de México postapocalíptica">
+        <h3>Ciudad de México</h3>
+        <p>En el valle sumergido, las ruinas se iluminan con neones rotos.
+           Los túneles del metro son refugio y memoria.</p>
+        <button data-city="mexico">Entrar a Ciudad de México</button>
+      </article>
+    </main>
+  </div>
+
+  <script>
+    // Detectar personaje elegido (opcional)
+    const choice = JSON.parse(localStorage.getItem('ethos_choice_v1') || '{}');
+    console.log("Personaje elegido:", choice);
+
+    // Guardar ciudad elegida
+    document.querySelectorAll('button[data-city]').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const city = btn.dataset.city;
+        localStorage.setItem('chosen_city', city);
+        alert(`Entrando a ${city.charAt(0).toUpperCase()+city.slice(1)}...`);
+        // Luego puedes redirigir a otra página:
+        // window.location.href = `${city}.html`;
+      });
+    });
+  </script>
+</body>
+</html>
