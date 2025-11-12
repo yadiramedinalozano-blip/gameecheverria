@@ -110,14 +110,16 @@
     <p class="msg" id="msg">Elige uno para continuar…</p>
   </div>
 
+<script src="js/game.js"></script>
 <script>
-  const KEY = 'ethos_choice_v1';
   document.querySelectorAll('.choice').forEach(b=>{
     b.addEventListener('click', ()=>{
-      const choice = { nombre: b.dataset.name, ethos: b.dataset.ethos };
-      localStorage.setItem(KEY, JSON.stringify(choice));
-      document.getElementById('msg').textContent = `Elegiste: ${choice.nombre}. (Guardado)`;
+      const ethos = b.dataset.ethos;
+      const choice = { nombre: b.dataset.name, ethos };
+      localStorage.setItem('ethos_choice_v1', JSON.stringify(choice));
+      addPoint(ethos, 1); // ← suma 1 punto según el personaje elegido
       window.location.href = 'ciudades.html';
     });
   });
 </script>
+
