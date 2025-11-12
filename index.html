@@ -26,6 +26,16 @@
     </footer>
   </div>
 
-  <script src="js/game.js"></script>
-</body>
-</html>
+<script src="js/game.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('start-btn');
+    if (btn) {
+      btn.addEventListener('click', () => {
+        resetScores();
+        window.location.href = 'personaje.html';
+      });
+    }
+  });
+</script>
+
