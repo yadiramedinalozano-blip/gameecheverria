@@ -110,17 +110,14 @@
     <p class="msg" id="msg">Elige uno para continuar…</p>
   </div>
 
-  <script>
-    const KEY = 'ethos_choice_v1';
-    document.querySelectorAll('.choice').forEach(b=>{
-      b.addEventListener('click', ()=>{
-        const choice = { nombre: b.dataset.name, ethos: b.dataset.ethos };
-        localStorage.setItem(KEY, JSON.stringify(choice));
-        document.getElementById('msg').textContent = `Elegiste: ${choice.nombre}. (Guardado)`;
-        // Activa la siguiente línea cuando tengas la próxima página:
-        // window.location.href = 'ciudades.html';
-      });
+<script>
+  const KEY = 'ethos_choice_v1';
+  document.querySelectorAll('.choice').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      const choice = { nombre: b.dataset.name, ethos: b.dataset.ethos };
+      localStorage.setItem(KEY, JSON.stringify(choice));
+      document.getElementById('msg').textContent = `Elegiste: ${choice.nombre}. (Guardado)`;
+      window.location.href = 'ciudades.html';
     });
-  </script>
-</body>
-</html>
+  });
+</script>
