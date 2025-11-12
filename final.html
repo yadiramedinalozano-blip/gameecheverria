@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Final — Colapso sur</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .wrap{max-width:900px;margin:0 auto;text-align:left}
+    .final-box{background:rgba(20,20,25,.55);border:1px solid rgba(255,255,255,.12);
+      border-radius:12px;padding:1.2rem;margin-top:1rem}
+    .scores{margin-top:.8rem;color:var(--muted)}
+    .actions{margin-top:1rem;display:flex;gap:.6rem;flex-wrap:wrap}
+    .btn{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#111;border:none;
+      border-radius:8px;padding:.6rem 1rem;font-weight:700;cursor:pointer}
+  </style>
+</head>
+<body>
+  <div class="container wrap">
+    <header>
+      <h1>Epílogo</h1>
+      <p class="subtitle">El mundo te respondió según tus pasos.</p>
+    </header>
+
+    <section class="final-box">
+      <h2 id="final-title">Final</h2>
+      <p id="final-text"></p>
+      <div class="scores" id="score-breakdown"></div>
+      <div class="actions">
+        <button class="btn" id="replay">Jugar otra vez</button>
+        <button class="btn" id="home">Volver al inicio</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="js/game.js"></script>
+  <script>
+    const {ganador, empate, ranking} = computeWinner();
+
+    const titles = {
+      clasico:  "Final clásico — Orden sobre las ruinas",
+      romantico:"Final romántico — Todo fue un sueño húmedo de la Tierra",
+      realista: "Final realista — La máquina siguió sin nosotros",
+      barroco:  "Final barroco — Fiesta interminable en el colapso"
+    };
+
+    const texts = {
+      clasico: `Restauraste patrones y jerarquías. Las calles volvieron a tener bordes
+        y los días, horarios. La ciudad respira, sí, pero en silencio tenso: cada
+        grieta cubierta es una historia que ya no se contará.`,
+      romantico: `El mundo te devolvió su memoria. Los muros susurran nombres, las plantas
+        brillan cuando las tocas. A veces dudas si despertaste: tal vez caminaste por
+        un sueño que necesitaba recordarte.`,
+      realista: `Sumaste eficiencias, rutas, recambios. La ciudad funciona como un reloj oxidado:
+        puntual y vacío. La vida sobrevive, pero nadie sabe para qué.`,
+      barroco: `Todo sigue mezclándose. Templos en mercados, risas en funerales, máscaras sobre
+        cicatrices. La ciudad, rota, baila. No hay pureza: hay obra viva.`
+    };
+
+    // Rellenar UI
+    document.getElementById('final-title').textContent = titles[ganador];
+    document.getElementById('final-text').textContent  = texts[ganador];
+
+    // Mostrar desglose de puntajes
+    const s = getScores();
+    const br = document.getElementById('score-breakdown');
+    br.innerHTML = `
+      <strong>Puntajes</strong> — Clásico: ${s.clasico} · Romántico: ${s.romantico}
+      · Realista: ${s.realista} · Barroco: ${s.barroco}
+      ${empate ? '<br><em>(Hubo empate; se decidió por tu última elección.)</em>' : ''}
+    `;
+
+    // Botones
+    document.getElementById('replay').addEventListener('click', ()=>{
+      resetScores();
+      window.location.href = 'index.html';
+    });
+    document.getElementById('home').addEventListener('click', ()=>{
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>
