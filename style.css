@@ -8,21 +8,25 @@
   --font: 'Inter', 'Segoe UI', system-ui, sans-serif;
 }
 
+/* Base y fondo */
 html, body {
   margin: 0;
-  height: 100%;
+  min-height: 100%;
   background: url("fondo.png") repeat top left fixed;
   background-size: 200px;
   color: var(--text);
   font-family: var(--font);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* No centramos verticalmente el body para que nunca se corte el título */
+  display: block;
+  overflow-x: hidden; /* evita desplazamiento lateral en zoom */
 }
 
+/* Contenedor más flexible y centrado */
 .container {
-  max-width: 700px;
-  padding: 2rem;
+  width: 90%;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1.5rem;
   text-align: center;
   background: rgba(20,20,25,0.55);
   border: 1px solid rgba(255,255,255,0.08);
@@ -31,46 +35,78 @@ html, body {
   backdrop-filter: blur(8px);
 }
 
+/* Tipografías fluidas: se adaptan al tamaño de pantalla */
+h1, h2, h3 {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.2;
+  margin: 0.5rem 0;
+  text-align: center;
+}
+
 h1 {
-  font-size: 2.4rem;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
   margin-bottom: .4rem;
   background: linear-gradient(135deg,var(--accent),var(--accent2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+h2 {
+  font-size: clamp(1.2rem, 3.8vw, 2rem);
+}
+
+h3 {
+  font-size: clamp(1rem, 3vw, 1.3rem);
+}
+
 .subtitle {
   color: var(--muted);
-  font-size: .95rem;
-  margin-bottom: 1.5rem;
+  font-size: clamp(.9rem, 2.2vw, 1rem);
+  margin-bottom: 1.2rem;
 }
 
-.intro {
-  font-size: 1.1rem;
+.intro, p {
+  font-size: clamp(0.95rem, 2.2vw, 1.1rem);
   line-height: 1.6;
-  margin-bottom: 2rem;
   color: var(--text);
+  margin: 0 0 1rem 0;
 }
 
+/* Imágenes responsivas (incluye la de ciudad) */
+img, .hero-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+/* Botones */
 button {
   background: linear-gradient(135deg,var(--accent),var(--accent2));
   color: #111;
   border: none;
   padding: .9rem 1.7rem;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: clamp(.95rem, 2.2vw, 1rem);
   cursor: pointer;
   transition: 0.25s ease;
   font-weight: 600;
 }
-
 button:hover {
   transform: scale(1.05);
   box-shadow: 0 0 10px rgba(255,255,255,0.2);
 }
 
+/* Footer */
 footer {
   margin-top: 2rem;
   color: var(--muted);
   font-size: .8rem;
+}
+
+/* Un poco de aire en pantallas muy pequeñas */
+@media (max-width: 480px) {
+  .container { margin: 1rem auto; padding: 1rem; }
 }
