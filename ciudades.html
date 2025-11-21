@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Ciudades — Colapso sur</title>
+  <title>Ciudades — Colapso Sur</title>
+  <link rel="icon" type="image/png" href="imagenes/icono.png">
   <link rel="stylesheet" href="style.css"/>
   <style>
     .wrap{max-width:960px;margin:0 auto}
@@ -34,39 +35,35 @@
     </section>
 
     <main class="city-grid">
-      <!-- QUITO -->
       <article class="city-card">
         <img src="imagenes/quito.png" alt="Quito postapocalíptico">
         <h3>Quito</h3>
         <p>En la altura, las nubes raspan los restos de vidrio y piedra. 
            Las terrazas se volvieron huertos, y las calles, ríos de niebla.</p>
-        <button data-city="quito" onclick="window.location.href='pre_final.html'">Entrar a Quito</button>
+        <button data-city="quito">Entrar a Quito</button>
       </article>
 
-      <!-- CIUDAD DE MÉXICO -->
       <article class="city-card">
         <img src="imagenes/mexico.png" alt="Ciudad de México postapocalíptica">
         <h3>Ciudad de México</h3>
         <p>En el valle sumergido, las ruinas se iluminan con neones rotos.
            Los túneles del metro son refugio y memoria.</p>
-        <button data-city="mexico" onclick="window.location.href='pre_final.html'">Entrar a Ciudad de México</button>
+        <button data-city="mexico">Entrar a Ciudad de México</button>
       </article>
     </main>
   </div>
 
   <script>
-    // Detectar personaje elegido (opcional)
-    const choice = JSON.parse(localStorage.getItem('ethos_choice_v1') || '{}');
-    console.log("Personaje elegido:", choice);
+    document.addEventListener('DOMContentLoaded', () => {
+      const choice = JSON.parse(localStorage.getItem('ethos_choice_v1') || '{}');
+      console.log("Personaje elegido:", choice);
 
-    // Guardar ciudad elegida
-    document.querySelectorAll('button[data-city]').forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        const city = btn.dataset.city;
-        localStorage.setItem('chosen_city', city);
-        alert(`Entrando a ${city.charAt(0).toUpperCase()+city.slice(1)}...`);
-        // Luego puedes redirigir a otra página:
-        // window.location.href = `${city}.html`;
+      document.querySelectorAll('button[data-city]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const city = btn.dataset.city;
+          localStorage.setItem('chosen_city', city);
+          window.location.href = `${city}.html`;
+        });
       });
     });
   </script>
