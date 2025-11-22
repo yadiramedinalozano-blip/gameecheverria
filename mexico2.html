@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Ciudad de México — Parte 2</title>
+  <link rel="icon" type="image/png" href="imagenes/icono.png">
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      color: var(--text, #fff);
+      background: #111;
+      overflow-x: hidden;
+      text-align: center;
+      padding: 1rem;
+    }
+    .wrap {max-width: 960px; margin: 0 auto;}
+    .scene {
+      background: rgba(20,20,25,.55);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      padding: 1.2rem;
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+    .scene p {margin: .8rem 0;}
+
+    /* Cuadrícula de opciones */
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    /* Botones con imagen */
+    .opcion {
+      position: relative;
+      border: none;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .opcion img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.8);
+      transition: filter 0.3s ease;
+    }
+    .opcion span {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    }
+    .opcion:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
+    .opcion:hover img {
+      filter: brightness(1);
+    }
+
+    /* Efecto flash (explosión previa) */
+    .flash {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: white;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transition: opacity 0.6s ease;
+    }
+    .flash.active {opacity: 1;}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Ciudad de México</h1>
+      <p class="subtitle">Después del estallido.</p>
+    </header>
+
+    <section class="scene">
+      <p>
+        La vida en tu facción es relativamente segura: tienen buena relación con las dos
+        facciones más importantes, la del agua y la de la energía. Sin embargo, una gran
+        explosión en el refugio de tu facción mata y hiere a todos tus compañeros.
+      </p>
+      <p>
+        Tú sabes que solo dos facciones poderosas tienen dinamita para un ataque de esa magnitud.
+        ¿Qué facción visitarás primero?
+      </p>
+    </section>
+
+    <main class="choices">
+      <button class="opcion decidir" data-ethos="romantico" data-points="1" data-next="agua.html">
+        <img src="imagenes/agua.png" alt="Facción del agua">
+        <span>💧 Facción encargada del agua</span>
+      </button>
+
+      <button class="opcion decidir" data-ethos="clasico" data-points="1" data-next="luz.html">
+        <img src="imagenes/luz.png" alt="Facción de la energía">
+        <span>⚡ Facción encargada de la energía</span>
+      </button>
+    </main>
+  </div>
+
+  <div class="flash" id="flash"></div>
+
+  <script src="js/game.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const flash = document.getElementById('flash');
+
+      document.querySelectorAll('.decidir').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const ethos = btn.dataset.ethos;
+          const pts = Number(btn.dataset.points || 1);
+          const next = btn.dataset.next;
+          addPoint(ethos, pts);
+
+          // Efecto de pantalla blanca
+          flash.classList.add('active');
+          setTimeout(()=>{ window.location.href = next; }, 800);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
