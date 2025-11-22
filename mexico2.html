@@ -32,13 +32,8 @@
       margin-bottom: 1rem;
       box-shadow: 0 0 10px rgba(0,0,0,0.4);
     }
-    header h1 {
-      margin: 0;
-    }
-    header .subtitle {
-      color: #ccc;
-      margin-top: .3rem;
-    }
+    header h1 {margin: 0;}
+    header .subtitle {color: #ccc; margin-top: .3rem;}
 
     .scene {
       background: rgba(20,20,25,.75);
@@ -51,7 +46,6 @@
     }
     .scene p {margin: .8rem 0;}
 
-    /* Cuadrícula de opciones */
     .choices {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -59,7 +53,6 @@
       margin-top: 2rem;
     }
 
-    /* Botones con imagen */
     .opcion {
       position: relative;
       border: none;
@@ -89,7 +82,6 @@
       text-shadow: 0 2px 4px rgba(0,0,0,0.6);
     }
 
-    /* Cambio de color al pasar el mouse */
     .opcion:hover {
       transform: translateY(-5px);
       box-shadow: 0 0 20px rgba(255,255,255,0.3);
@@ -121,12 +113,12 @@
       </section>
 
       <main class="choices">
-        <button class="opcion decidir" data-ethos="romantico" data-points="1" data-next="agua.html">
+        <button class="opcion decidir" data-next="pre-final.html">
           <img src="imagenes/agua.png" alt="Facción del agua">
           <span>Facción encargada del agua</span>
         </button>
 
-        <button class="opcion decidir" data-ethos="clasico" data-points="1" data-next="luz.html">
+        <button class="opcion decidir" data-next="pre-final.html">
           <img src="imagenes/luz.png" alt="Facción de la energía">
           <span>Facción encargada de la energía</span>
         </button>
@@ -134,15 +126,11 @@
     </div>
   </div>
 
-  <script src="js/game.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', ()=>{
       document.querySelectorAll('.decidir').forEach(btn=>{
         btn.addEventListener('click', ()=>{
-          const ethos = btn.dataset.ethos;
-          const pts = Number(btn.dataset.points || 1);
           const next = btn.dataset.next;
-          addPoint(ethos, pts);
           window.location.href = next;
         });
       });
