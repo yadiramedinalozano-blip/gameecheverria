@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Quito — Parte 2</title>
+  <link rel="icon" type="image/png" href="imagenes/icono.png">
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      color: var(--text, #fff);
+      background: #111;
+      overflow-x: hidden;
+      text-align: center;
+    }
+
+    /* Fondo con imagen enfermedad */
+    .fondo {
+      background: url('imagenes/enfermedad.png') no-repeat center center fixed;
+      background-size: cover;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    .fondo.visible {
+      opacity: 1;
+    }
+
+    .overlay {
+      background: rgba(0,0,0,0.6);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .wrap {max-width: 960px; margin: 0 auto;}
+    header {
+      background: rgba(10,10,15,0.7);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+    header h1 {
+      margin: 0;
+    }
+    header .subtitle {
+      color: #ccc;
+      margin-top: .3rem;
+    }
+
+    .scene {
+      background: rgba(20,20,25,.75);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      padding: 1.2rem;
+      text-align: left;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    .scene p {margin: .8rem 0;}
+
+    /* Cuadrícula de opciones */
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    /* Botones con imagen */
+    .opcion {
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      padding: 1rem;
+      font-size: 1rem;
+      font-weight: 700;
+      text-align: left;
+      line-height: 1.4;
+      background: linear-gradient(135deg, #ffd76f, #ff9f8b);
+      color: #111;
+      transition: all 0.3s ease;
+    }
+    .opcion:hover {
+      background: linear-gradient(135deg, #ffe69f, #ffb07b);
+      transform: translateY(-3px);
+      box-shadow: 0 0 15px rgba(255,200,100,0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="fondo" id="fondo"></div>
+
+  <div class="overlay" id="contenido" style="display:none;">
+    <div class="wrap">
+      <header>
+        <h1>Quito</h1>
+        <p class="subtitle">Decisiones bajo un cielo enfermo.</p>
+      </header>
+
+      <section class="scene">
+        <p>
+          Algo dentro de ti se quiebra. Tu mutación, antes estable, reacciona al nuevo evento eléctrico.
+          El anciano que encontraste en el refugio te advierte que solo en Riobamba el aire no está
+          contaminado y que allí podría detenerse el daño antes de que avance y te mate.
+        </p>
+        <p>
+          No sabes cuánto tiempo te queda. Debes elegir qué transporte usarás para viajar al sur.
+        </p>
+      </section>
+
+      <main class="choices">
+        <button class="opcion decidir" data-ethos="barroco" data-points="1" data-next="quito3.html">
+          🚲 Un triciclo armado con partes distintas y una lona improvisada como techo; 
+          para moverte entre los restos sin llamar la atención.
+        </button>
+
+        <button class="opcion decidir" data-ethos="romantico" data-points="1" data-next="quito3.html">
+          🌸 Una bicicleta oxidada con una flor seca amarrada al manubrio; 
+          para detenerte a mirar el humo del volcán.
+        </button>
+
+        <button class="opcion decidir" data-ethos="realista" data-points="1" data-next="quito3.html">
+          🚚 Una camioneta de mantenimiento con el logo descolorido de una vieja empresa; 
+          para avanzar siguiendo el mapa más directo.
+        </button>
+
+        <button class="opcion decidir" data-ethos="clasico" data-points="1" data-next="quito3.html">
+          🏍️ Una moto bien cuidada, herramientas y suministros ordenados en una caja metálica 
+          al costado para cualquier improvisto.
+        </button>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/game.js"></script>
+  <script>
+    // Mostrar la imagen 0.8s y luego el contenido
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const fondo = document.getElementById('fondo');
+      const contenido = document.getElementById('contenido');
+
+      fondo.classList.add('visible');
+      setTimeout(()=>{
+        contenido.style.display = 'block';
+      }, 800);
+
+      // Decisiones
+      document.querySelectorAll('.decidir').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const ethos = btn.dataset.ethos;
+          const pts = Number(btn.dataset.points || 1);
+          const next = btn.dataset.next;
+          addPoint(ethos, pts);
+          window.location.href = next;
+        });
+      });
+    });
+  </script>
+</body>
+</html>
