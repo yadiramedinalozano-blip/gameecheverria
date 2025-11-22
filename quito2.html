@@ -16,27 +16,43 @@
       text-align: center;
     }
 
-    /* Fondo con imagen enfermedad */
+    /* Imagen de entrada */
+    .intro-img {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('imagenes/enfermedad.png') no-repeat center center;
+      background-size: cover;
+      opacity: 1;
+      transition: opacity 1s ease;
+      z-index: 9999;
+    }
+    .intro-img.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Fondo (permanece visible después) */
     .fondo {
       background: url('imagenes/enfermedad.png') no-repeat center center fixed;
       background-size: cover;
-      opacity: 0;
-      transition: opacity 0.8s ease;
       position: fixed;
       top: 0; left: 0;
       width: 100%;
       height: 100%;
       z-index: -1;
-    }
-    .fondo.visible {
-      opacity: 1;
+      filter: brightness(0.5);
     }
 
     .overlay {
       background: rgba(0,0,0,0.6);
       min-height: 100vh;
       padding: 2rem 1rem;
+      opacity: 0;
+      transition: opacity 1s ease;
     }
+    .overlay.visible {opacity: 1;}
 
     .wrap {max-width: 960px; margin: 0 auto;}
     header {
@@ -46,13 +62,8 @@
       margin-bottom: 1rem;
       box-shadow: 0 0 10px rgba(0,0,0,0.4);
     }
-    header h1 {
-      margin: 0;
-    }
-    header .subtitle {
-      color: #ccc;
-      margin-top: .3rem;
-    }
+    header h1 {margin: 0;}
+    header .subtitle {color: #ccc; margin-top: .3rem;}
 
     .scene {
       background: rgba(20,20,25,.75);
@@ -73,7 +84,7 @@
       margin-top: 2rem;
     }
 
-    /* Botones con imagen */
+    /* Botones con efecto */
     .opcion {
       border: none;
       border-radius: 12px;
@@ -90,14 +101,19 @@
     .opcion:hover {
       background: linear-gradient(135deg, #ffe69f, #ffb07b);
       transform: translateY(-3px);
-      box-shadow: 0 0 15px rgba(255,200,100,0.4);
+      box-shadow: 0 0 18px rgba(255,200,100,0.5);
     }
   </style>
 </head>
 <body>
-  <div class="fondo" id="fondo"></div>
+  <!-- Imagen de entrada -->
+  <div class="intro-img" id="intro"></div>
 
-  <div class="overlay" id="contenido" style="display:none;">
+  <!-- Fondo fijo -->
+  <div class="fondo"></div>
+
+  <!-- Contenido -->
+  <div class="overlay" id="contenido">
     <div class="wrap">
       <header>
         <h1>Quito</h1>
@@ -141,14 +157,14 @@
 
   <script src="js/game.js"></script>
   <script>
-    // Mostrar la imagen 0.8s y luego el contenido
     document.addEventListener('DOMContentLoaded', ()=>{
-      const fondo = document.getElementById('fondo');
-      const contenido = document.getElementById('contenido');
+      const intro = document.getElementById('intro');
+      const overlay = document.getElementById('contenido');
 
-      fondo.classList.add('visible');
+      // Mostrar imagen inicial, luego fundir y revelar texto
       setTimeout(()=>{
-        contenido.style.display = 'block';
+        intro.classList.add('fade-out');
+        overlay.classList.add('visible');
       }, 800);
 
       // Decisiones
