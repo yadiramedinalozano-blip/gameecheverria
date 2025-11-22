@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Quito — Colapso Sur</title>
+  <link rel="icon" type="image/png" href="imagenes/icono.png">
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .wrap{max-width:960px;margin:0 auto}
+    .scene{background:rgba(20,20,25,.55);border:1px solid rgba(255,255,255,.12);
+      border-radius:12px;padding:1.2rem;text-align:left;margin-bottom:1.2rem}
+    .scene p{margin:.8rem 0;color:var(--text)}
+    .refugios{display:grid;gap:1rem;margin-top:1rem}
+    @media(min-width:700px){.refugios{grid-template-columns:repeat(2,1fr)}}
+    .option{background:rgba(20,20,25,.55);border:1px solid rgba(255,255,255,.12);
+      border-radius:12px;padding:1rem;text-align:left;transition:.25s}
+    .option:hover{transform:translateY(-3px);box-shadow:0 0 10px rgba(255,255,255,0.15)}
+    .option button{background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#111;border:none;padding:.6rem 1rem;border-radius:8px;cursor:pointer;font-weight:700}
+    .volcan{width:100%;border-radius:12px;margin-bottom:1rem}
+  </style>
+</head>
+<body>
+  <div class="container wrap">
+    <header>
+      <h1>Quito</h1>
+      <p class="subtitle">Entre montañas dormidas y fuego eléctrico.</p>
+    </header>
+
+    <img src="imagenes/volcan.png" alt="Volcán Cotopaxi y Pichincha" class="volcan"/>
+
+    <section class="scene">
+      <p>
+        Gracias a las mutaciones y a un poco de suerte has logrado sobrevivir durante diez años
+        desde el inicio del colapso. Sin embargo, un nuevo desafío se aproxima: el Cotopaxi y
+        el Ruco Pichincha ya no expulsan lava ni ceniza, sino una mezcla electroactiva.
+      </p>
+      <p>
+        Has visto morir a muchos de tus compañeros. Ahora debes buscar un refugio. ¿Cuál eliges?
+      </p>
+    </section>
+
+    <main class="refugios">
+      <article class="option">
+        <h3>Un estacionamiento subterráneo</h3>
+        <p>Seguro, aunque el aire sea espeso.</p>
+        <button data-ethos="realista">Elegir refugio</button>
+      </article>
+
+      <article class="option">
+        <h3>Una casa medio derruida con ventanales</h3>
+        <p>Abierta al volcán. Buena vista
