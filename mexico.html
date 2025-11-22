@@ -10,6 +10,8 @@
     body {
       text-align: center;
       padding: 1rem;
+      background: #111;
+      color: #fff;
     }
     .wrap {max-width: 960px; margin: 0 auto;}
     .mercado {
@@ -27,14 +29,12 @@
     }
     .scene p {margin: .8rem 0;}
 
-    /* Cuadrícula de botones */
     .choices {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 1rem;
+      margin-top: 2rem;
     }
-
-    /* Estilo de los botones */
     .decidir {
       display: flex;
       align-items: flex-start;
@@ -49,11 +49,29 @@
       font-size: 1rem;
       text-align: left;
       line-height: 1.4;
-      transition: transform .2s, box-shadow .2s;
+      transition: transform .2s, box-shadow .2s, filter .3s;
     }
     .decidir:hover {
       transform: translateY(-3px);
-      box-shadow: 0 0 15px rgba(0,0,0,.25);
+      box-shadow: 0 0 12px rgba(255,255,255,0.3);
+      filter: brightness(1.1);
+    }
+
+    /* Imagen de explosión */
+    .bomba {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('imagenes/bomba.png') no-repeat center center;
+      background-size: cover;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      z-index: 9999;
+    }
+    .bomba.active {
+      opacity: 1;
     }
   </style>
 </head>
@@ -61,7 +79,7 @@
   <div class="wrap">
     <header>
       <h1>Ciudad de México</h1>
-      <p class="subtitle">Ruinas y neones rotos</p>
+      <p class="subtitle">Ruinas, neones rotos y memoria en movimiento.</p>
     </header>
 
     <img src="imagenes/mercado.png" alt="Mercado en ruinas" class="mercado"/>
@@ -94,16 +112,28 @@
     </main>
   </div>
 
+  <!-- Imagen de explosión -->
+  <div class="bomba" id="bomba"></div>
+
   <script src="js/game.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', ()=>{
+      const bomba = document.getElementById('bomba');
+
       document.querySelectorAll('.decidir').forEach(btn=>{
         btn.addEventListener('click', ()=>{
           const ethos = btn.dataset.ethos;
           const pts = Number(btn.dataset.points || 1);
           const next = btn.dataset.next || 'mexico2.html';
           addPoint(ethos, pts);
-          window.location.href = next;
+
+          // Mostrar la imagen de explosión
+          bomba.classList.add('active');
+
+          // Esperar 0.5 segundos y redirigir
+          setTimeout(()=>{
+            window.location.href = next;
+          }, 500);
         });
       });
     });
