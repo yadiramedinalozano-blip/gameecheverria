@@ -11,12 +11,13 @@
       font-family: system-ui, sans-serif;
       margin: 0;
       color: var(--text, #fff);
-      background: #111;
+      background: url('imagenes/enfermedad.png') no-repeat center center fixed;
+      background-size: cover;
       overflow-x: hidden;
       text-align: center;
     }
 
-    /* Imagen de entrada */
+    /* Capa inicial con la imagen completa */
     .intro-img {
       position: fixed;
       top: 0; left: 0;
@@ -24,25 +25,13 @@
       height: 100%;
       background: url('imagenes/enfermedad.png') no-repeat center center;
       background-size: cover;
+      z-index: 100;
       opacity: 1;
       transition: opacity 1s ease;
-      z-index: 9999;
     }
     .intro-img.fade-out {
       opacity: 0;
       pointer-events: none;
-    }
-
-    /* Fondo (permanece visible después) */
-    .fondo {
-      background: url('imagenes/enfermedad.png') no-repeat center center fixed;
-      background-size: cover;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      filter: brightness(0.5);
     }
 
     .overlay {
@@ -106,11 +95,8 @@
   </style>
 </head>
 <body>
-  <!-- Imagen de entrada -->
+  <!-- Imagen que aparece al principio -->
   <div class="intro-img" id="intro"></div>
-
-  <!-- Fondo fijo -->
-  <div class="fondo"></div>
 
   <!-- Contenido -->
   <div class="overlay" id="contenido">
@@ -161,7 +147,7 @@
       const intro = document.getElementById('intro');
       const overlay = document.getElementById('contenido');
 
-      // Mostrar imagen inicial, luego fundir y revelar texto
+      // Mostrar imagen inicial, luego desaparecerla y mostrar el texto
       setTimeout(()=>{
         intro.classList.add('fade-out');
         overlay.classList.add('visible');
