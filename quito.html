@@ -11,14 +11,13 @@
     .scene{background:rgba(20,20,25,.55);border:1px solid rgba(255,255,255,.12);
       border-radius:12px;padding:1.2rem;text-align:left;margin-bottom:1.2rem}
     .scene p{margin:.8rem 0;color:var(--text)}
-    .refugios{display:grid;gap:1rem;margin-top:1rem}
-    @media(min-width:700px){.refugios{grid-template-columns:repeat(2,1fr)}}
-    .option{background:rgba(20,20,25,.55);border:1px solid rgba(255,255,255,.12);
-      border-radius:12px;padding:1rem;text-align:left;transition:.25s}
-    .option:hover{transform:translateY(-3px);box-shadow:0 0 10px rgba(255,255,255,0.15)}
-    .option button{background:linear-gradient(135deg,var(--accent),var(--accent2));
-      color:#111;border:none;padding:.6rem 1rem;border-radius:8px;cursor:pointer;font-weight:700}
     .volcan{width:100%;border-radius:12px;margin-bottom:1rem}
+    .choices{display:grid;gap:1rem;margin-top:1rem}
+    @media(min-width:700px){.choices{grid-template-columns:repeat(2,1fr)}}
+    .decidir{display:block;width:100%;background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#111;font-weight:700;padding:1rem;border:none;border-radius:10px;cursor:pointer;
+      transition:transform .2s, box-shadow .2s;font-size:1rem;text-align:center}
+    .decidir:hover{transform:translateY(-2px);box-shadow:0 0 12px rgba(0,0,0,.25)}
   </style>
 </head>
 <body>
@@ -41,13 +40,38 @@
       </p>
     </section>
 
-    <main class="refugios">
-      <article class="option">
-        <h3>Un estacionamiento subterráneo</h3>
-        <p>Seguro, aunque el aire sea espeso.</p>
-        <button data-ethos="realista">Elegir refugio</button>
-      </article>
+    <main class="choices">
+      <button class="decidir" data-ethos="realista" data-points="1" data-next="quito2.html">
+        Un estacionamiento subterráneo; seguro, aunque el aire sea espeso.
+      </button>
 
-      <article class="option">
-        <h3>Una casa medio derruida con ventanales</h3>
-        <p>Abierta al volcán. Buena vista
+      <button class="decidir" data-ethos="romantico" data-points="1" data-next="quito2.html">
+        Una casa medio derruida con ventanales; abierta al volcán. Buena vista.
+      </button>
+
+      <button class="decidir" data-ethos="clasico" data-points="1" data-next="quito2.html">
+        Un edificio antiguo con columnas firmes; estable, aunque frío.
+      </button>
+
+      <button class="decidir" data-ethos="barroco" data-points="1" data-next="quito2.html">
+        Un almacén saqueado; desordenado, pero fácil de adaptar.
+      </button>
+    </main>
+  </div>
+
+  <script src="js/game.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+      document.querySelectorAll('.decidir').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const ethos = btn.dataset.ethos;
+          const pts = Number(btn.dataset.points || 1);
+          const next = btn.dataset.next || 'quito2.html';
+          addPoint(ethos, pts);
+          window.location.href = next;
+        });
+      });
+    });
+  </script>
+</body>
+</html>
