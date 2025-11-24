@@ -17,25 +17,28 @@
       text-align: center;
     }
 
-    /* 📸 Encabezado gigante con la mochila */
+    /* 📸 Encabezado ajustado: imagen completa y menos alto */
     .mochila-header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 280px; /* Ajusta el alto del banner */
-      background: url('imagenes/mochila.png') no-repeat center center;
-      background-size: cover;
+      height: 200px; /* antes 300px */
+      background: 
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55)),
+        url('imagenes/mochila.png') no-repeat center center;
+      background-size: contain; /* muestra toda la imagen sin recorte */
+      background-repeat: no-repeat;
       background-position: center;
-      background-attachment: fixed;
+      background-color: #000; /* rellena si sobra espacio */
       z-index: 10;
       border-bottom: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
     }
 
-    /* Espacio para que el contenido no quede tapado */
+    /* Espacio menor para el contenido */
     .contenido {
-      padding-top: 300px;
+      padding-top: 220px;
     }
 
     .overlay {
@@ -114,7 +117,7 @@
   </style>
 </head>
 <body>
-  <!-- 🧭 Encabezado fijo a todo el ancho -->
+  <!-- 🧭 Encabezado fijo con imagen completa -->
   <div class="mochila-header"></div>
 
   <div class="overlay contenido">
