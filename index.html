@@ -10,39 +10,64 @@
 
 <body>
   <div class="container">
-    
-    <header>
-      <h1>Colapso Sur</h1>
-      <p class="subtitle">
-        Un cuento interactivo sobre el agotamiento civilizatorio, el fin del mundo conocido
-        y la búsqueda de un nuevo habitar desde las perspectivas familiares.
-      </p>
-    </header>
 
-    <main>
-      <p class="intro">
-        Entre las ruinas de la modernidad capitalista, cada decisión que tomes revelará un rastro
-        de cómo aprendiste a sobrevivir cuando el mundo aún existía.
-      </p>
-      <button id="start-btn" class="boton-principal">Comenzar</button>
-    </main>
+    <!-- ===== ESCENA INICIO ===== -->
+    <section id="inicio" class="escena activa">
+      <header>
+        <h1>Colapso Sur</h1>
+        <p class="subtitle">
+          Un cuento interactivo sobre el agotamiento civilizatorio, el fin del mundo conocido
+          y la búsqueda de un nuevo habitar desde las perspectivas familiares.
+        </p>
+      </header>
 
-    <footer>
-      <small>Creado por Yadira Medina Lozano · 2025</small>
-    </footer>
+      <main>
+        <p class="intro">
+          Entre las ruinas de la modernidad capitalista, cada decisión que tomes revelará un rastro
+          de cómo aprendiste a sobrevivir cuando el mundo aún existía.
+        </p>
+        <button id="start-btn" class="boton-principal">Comenzar</button>
+      </main>
+
+      <footer>
+        <small>Creado por Yadira Medina Lozano · 2025</small>
+      </footer>
+    </section>
+
+    <!-- ===== ESCENA PERSONAJE ===== -->
+    <section id="personaje" class="escena">
+      <h2>Elige tu personaje</h2>
+      <p>Selecciona desde qué mirada enfrentarás el colapso.</p>
+      <div class="opciones">
+        <button class="decidir" data-ethos="clasico">Clásico</button>
+        <button class="decidir" data-ethos="romantico">Romántico</button>
+        <button class="decidir" data-ethos="realista">Realista</button>
+        <button class="decidir" data-ethos="barroco">Barroco</button>
+      </div>
+    </section>
+
   </div>
 
-  <!-- Scripts -->
   <script src="game.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const btn = document.getElementById('start-btn');
-      if (btn) {
-        btn.addEventListener('click', () => {
+      const escenas = document.querySelectorAll('.escena');
+      const startBtn = document.getElementById('start-btn');
+
+      function mostrarEscena(id) {
+        escenas.forEach(e => e.classList.remove('activa'));
+        document.getElementById(id).classList.add('activa');
+      }
+
+      if (startBtn) {
+        startBtn.addEventListener('click', () => {
           resetScores();
-          window.location.href = 'personaje.html';
+          mostrarEscena('personaje'); // NO cambia de página
         });
       }
+
+      // activar botones de decisión
+      bindDecisionButtons();
     });
   </script>
 </body>
