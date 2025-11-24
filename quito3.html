@@ -28,7 +28,7 @@
       background: rgba(10,10,15,0.7);
       border-radius: 12px;
       padding: 1rem;
-      margin-bottom: 1rem;
+      margin-bottom: 5rem; /* deja espacio debajo para la mochila */
       box-shadow: 0 0 10px rgba(0,0,0,0.4);
       position: relative;
       z-index: 2;
@@ -36,18 +36,18 @@
     header h1 {margin: 0;}
     header .subtitle {color: #ccc; margin-top: .3rem;}
 
-    /* Imagen de la mochila fija */
+    /* 📦 Imagen fija en el primer cuarto de la pantalla */
     .mochila {
       position: fixed;
-      top: 50%;
+      top: 25%; /* 👈 se mantiene en el primer cuarto de la página */
       left: 50%;
       transform: translate(-50%, -50%);
       width: 180px;
-      opacity: 0.8;
-      filter: drop-shadow(0 0 6px rgba(255,255,255,0.4));
+      opacity: 0.9;
+      filter: drop-shadow(0 0 8px rgba(255,255,255,0.6));
       animation: flotar 4s ease-in-out infinite alternate;
-      z-index: 1;
-      pointer-events: none; /* evita interferir con clics */
+      z-index: 5;
+      pointer-events: none;
     }
 
     @keyframes flotar {
@@ -68,7 +68,7 @@
     }
     .scene p {margin: .8rem 0;}
 
-    /* Opciones */
+    /* Cuadro de decisiones */
     .choices {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -101,7 +101,6 @@
       color: #111;
       transition: all 0.3s ease;
       width: 100%;
-      z-index: 4;
     }
     .lugar:hover {
       background: linear-gradient(135deg, #ffe69f, #ffb07b);
