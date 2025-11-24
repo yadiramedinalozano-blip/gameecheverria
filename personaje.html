@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Elige tu personaje — Colapso Sur</title>
+  <title>Elige tu personaje — Colapso sur</title>
   <link rel="icon" type="image/png" href="imagenes/icono.png">
   <link rel="stylesheet" href="style.css"/>
   <style>
@@ -48,7 +48,6 @@
       gap:1rem;
     }
 
-    /* 🔥 Imagen de personaje más grande */
     .avatar{
       width:140px;
       height:140px;
@@ -65,7 +64,6 @@
     .card h3{margin:.2rem 0 .4rem}
     .card p{margin:0 0 .8rem;color:var(--muted)}
 
-    /* ✨ Botones con hover */
     .choice{
       display:inline-block;
       background:linear-gradient(135deg,var(--accent),var(--accent2));
@@ -114,45 +112,71 @@
     </header>
 
     <main class="grid">
+      <!-- Clásico -->
       <article class="card">
         <div class="char">
           <img src="imagenes/durmiente.png" alt="Durmiente" class="avatar">
           <div>
             <h3>Durmientes</h3>
-            <p>Meses bajo cielos quemados activaron una luminiscencia en su piel...</p>
+            <p>
+              Meses bajo cielos quemados activaron una luminiscencia en su piel. La superficie se
+              cuarteó con polvo y barro; al dormir, sus cuerpos se petrifican como estatuas antiguas,
+              y, aun en el fin del mundo, se mantienen bellos y majestuosos. Conservan su forma humana
+              en la medida de lo posible. En ellos resiste una idea de orden, simetría y belleza,
+              como si mantener la forma fuera una forma de resistencia.
+            </p>
             <button class="choice" data-ethos="clasico" data-name="Durmiente">Elegir Durmiente</button>
           </div>
         </div>
       </article>
 
+      <!-- Barroco -->
       <article class="card">
         <div class="char">
           <img src="imagenes/errante.png" alt="Errante" class="avatar">
           <div>
             <h3>Errantes</h3>
-            <p>De los derrumbes surgieron cuerpos hechos de fibras, telas, metales...</p>
+            <p>
+              De los derrumbes surgieron cuerpos hechos de fibras, telas, metales, pelaje y hueso. No quedó
+              pureza: solo una mezcla funcional que aprendió a resistir con branquias y pulmones.
+              Cada uno mutó de forma distinta, y no existen adjetivos capaces de describirlos con
+              exactitud. Son el caos hecho carne, criaturas que avanzan en la contradicción y el exceso.
+              En su diversidad hay fuerza; en su fealdad, belleza.
+            </p>
             <button class="choice" data-ethos="barroco" data-name="Errante">Elegir Errante</button>
           </div>
         </div>
       </article>
 
+      <!-- Romántico -->
       <article class="card">
         <div class="char">
           <img src="imagenes/fungi.png" alt="Fungi" class="avatar">
           <div>
             <h3>Fungis</h3>
-            <p>Las lluvias ácidas abrieron paso al micelio...</p>
+            <p>
+              Las lluvias ácidas abrieron paso al micelio. Esporas bioluminiscentes se mezclaron con
+              cuerpos vivos; sus rostros tristes recuerdan lo perdido y contemplan el nuevo mundo 
+              con una profunda visión artística y nostálgica. Su respiración libera fragancias que
+              alteran la memoria. Hablan con el viento y las raíces, comprenden el tiempo desde la descomposición.
+            </p>
             <button class="choice" data-ethos="romantico" data-name="Fungi">Elegir Fungi</button>
           </div>
         </div>
       </article>
 
+      <!-- Realista -->
       <article class="card">
         <div class="char">
           <img src="imagenes/zombie.png" alt="Residual" class="avatar">
           <div>
             <h3>Residuales</h3>
-            <p>El destino de muchos seres humanos, tras el primer apagón global...</p>
+            <p>
+              El destino de muchos seres humanos, tras el primer apagón global, fue seguir trabajando.
+              Porque, aunque exista el fin del mundo, su puesto de “empleado del mes” sigue siendo
+              más importante. Olvidó cómo vivir; ya no busca cerebros, busca informes. Caminan entre
+              ruinas con maletines y relojes detenidos, esperando una orden que nunca llegará.
+            </p>
             <button class="choice" data-ethos="realista" data-name="Residual">Elegir Residual</button>
           </div>
         </div>
