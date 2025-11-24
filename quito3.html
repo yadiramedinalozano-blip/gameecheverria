@@ -28,7 +28,7 @@
       background: rgba(10,10,15,0.7);
       border-radius: 12px;
       padding: 1rem;
-      margin-bottom: 5rem; /* deja espacio debajo para la mochila */
+      margin-bottom: 5rem;
       box-shadow: 0 0 10px rgba(0,0,0,0.4);
       position: relative;
       z-index: 2;
@@ -36,23 +36,17 @@
     header h1 {margin: 0;}
     header .subtitle {color: #ccc; margin-top: .3rem;}
 
-    /* 📦 Imagen fija en el primer cuarto de la pantalla */
+    /* 📦 Imagen fija al centro absoluto */
     .mochila {
       position: fixed;
-      top: 25%; /* 👈 se mantiene en el primer cuarto de la página */
+      top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 180px;
-      opacity: 0.9;
-      filter: drop-shadow(0 0 8px rgba(255,255,255,0.6));
-      animation: flotar 4s ease-in-out infinite alternate;
+      width: 220px;
+      opacity: 1;
+      filter: drop-shadow(0 0 10px rgba(255,255,255,0.6));
       z-index: 5;
       pointer-events: none;
-    }
-
-    @keyframes flotar {
-      from { transform: translate(-50%, -50%) translateY(0px); }
-      to { transform: translate(-50%, -50%) translateY(-8px); }
     }
 
     .scene {
@@ -68,7 +62,6 @@
     }
     .scene p {margin: .8rem 0;}
 
-    /* Cuadro de decisiones */
     .choices {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
