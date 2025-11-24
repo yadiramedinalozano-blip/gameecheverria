@@ -1,27 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Colapso sur</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colapso Sur</title>
   <link rel="icon" type="image/png" href="imagenes/icono.png">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div class="container">
+    
     <header>
-      <h1>Colapso sur</h1>
-      <p class="subtitle">Un cuento interactivo sobre el agotamiento civilizatorio, el fin del mundo conocido 
-        y
-        la búsqueda de un nuevo habitar desde las perspectivas familiares.</p>
+      <h1>Colapso Sur</h1>
+      <p class="subtitle">
+        Un cuento interactivo sobre el agotamiento civilizatorio, el fin del mundo conocido
+        y la búsqueda de un nuevo habitar desde las perspectivas familiares.
+      </p>
     </header>
 
     <main>
       <p class="intro">
-       Entre las ruinas de la modernidad capitalista, cada decisión que tomes revelará un rastro
-       de cómo aprendiste a sobrevivir cuando el mundo aún existía. <br>
+        Entre las ruinas de la modernidad capitalista, cada decisión que tomes revelará un rastro
+        de cómo aprendiste a sobrevivir cuando el mundo aún existía.
       </p>
-      <button id="start-btn">Comenzar</button>
+      <button id="start-btn" class="boton-principal">Comenzar</button>
     </main>
 
     <footer>
@@ -29,16 +32,18 @@
     </footer>
   </div>
 
-<script src="js/game.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('start-btn');
-    if (btn) {
-      btn.addEventListener('click', () => {
-        resetScores();
-        window.location.href = 'personaje.html';
-      });
-    }
-  });
-</script>
-
+  <!-- Scripts -->
+  <script src="game.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('start-btn');
+      if (btn) {
+        btn.addEventListener('click', () => {
+          resetScores();
+          window.location.href = 'personaje.html';
+        });
+      }
+    });
+  </script>
+</body>
+</html>
