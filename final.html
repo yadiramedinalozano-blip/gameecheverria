@@ -7,12 +7,41 @@
   <link rel="stylesheet" href="style.css"/>
   <style>
     .wrap{max-width:900px;margin:0 auto;text-align:left}
-    .final-box{background:rgba(20,20,25,.55);border:1px solid rgba(255,255,255,.12);
-      border-radius:12px;padding:1.2rem;margin-top:1rem}
+    .final-box{
+      background:rgba(20,20,25,.55);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:12px;
+      padding:1.2rem;
+      margin-top:1rem;
+      text-align:center;
+    }
+
+    .final-img{
+      display:block;
+      width:100%;
+      max-width:800px;
+      margin:0 auto 1.5rem auto;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.1);
+      box-shadow:0 0 12px rgba(0,0,0,0.5);
+    }
+
     .scores{margin-top:.8rem;color:var(--muted)}
-    .actions{margin-top:1rem;display:flex;gap:.6rem;flex-wrap:wrap}
-    .btn{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#111;border:none;
-      border-radius:8px;padding:.6rem 1rem;font-weight:700;cursor:pointer}
+    .actions{margin-top:1.5rem;display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center}
+    .btn{
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#111;
+      border:none;
+      border-radius:8px;
+      padding:.6rem 1.2rem;
+      font-weight:700;
+      cursor:pointer;
+      transition:all .25s ease;
+    }
+    .btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 0 10px rgba(0,0,0,.3);
+    }
   </style>
 </head>
 <body>
@@ -23,6 +52,7 @@
     </header>
 
     <section class="final-box">
+      <img id="final-image" class="final-img" alt="Final del juego" src="">
       <h2 id="final-title">Final</h2>
       <p id="final-text"></p>
       <div class="scores" id="score-breakdown"></div>
@@ -35,7 +65,7 @@
 
   <script src="js/game.js"></script>
   <script>
-    const {ganador, empate, ranking} = computeWinner();
+    const { ganador, empate, ranking } = computeWinner();
 
     const titles = {
       clasico:  "Final clásico — Orden sobre las ruinas",
@@ -45,21 +75,31 @@
     };
 
     const texts = {
-      clasico: `Restauraste patrones y jerarquías. Las calles volvieron a tener bordes
-        y los días, horarios. La ciudad respira, sí, pero en silencio tenso: cada
-        grieta cubierta es una historia que ya no se contará.`,
-      romantico: `El mundo te devolvió su memoria. Los muros susurran nombres, las plantas
-        brillan cuando las tocas. A veces dudas si despertaste: tal vez caminaste por
-        un sueño que necesitaba recordarte.`,
-      realista: `Sumaste eficiencias, rutas, recambios. La ciudad funciona como un reloj oxidado:
-        puntual y vacío. La vida sobrevive, pero nadie sabe para qué.`,
-      barroco: `Todo sigue mezclándose. Templos en mercados, risas en funerales, máscaras sobre
-        cicatrices. La ciudad, rota, baila. No hay pureza: hay obra viva.`
+      clasico: `Tu visión del mundo se inclinó hacia el ethos clásico.
+       Elegiste la medida, la prudencia y el equilibrio.
+       Encontraste armonía entre el deber y el deseo. `,
+      romantico: `Tu visión del mundo se inclinó hacia el ethos romántico.
+         Buscaste sentido en medio del caos. 
+         Convertiste la esperanza en tu fuerza.`,
+      realista: `Tu visión del mundo se inclinó hacia el ethos realista.
+        Hallaste refugio en el orden y en la eficacia.
+        Sobrevivir fue tu forma de creer.`,
+      barroco: `Tu visión del mundo se inclinó hacia el ethos barroco.
+        Hiciste del disimulo y la mezcla tu refugio. 
+        Sobreviviste riendo entre las ruinas.`
+    };
+
+    const images = {
+      clasico:  "imagenes/finalclasico.png",
+      romantico:"imagenes/finalromantico.png",
+      realista: "imagenes/finalrealista.png",
+      barroco:  "imagenes/finalbarroco.png"
     };
 
     // Rellenar UI
     document.getElementById('final-title').textContent = titles[ganador];
     document.getElementById('final-text').textContent  = texts[ganador];
+    document.getElementById('final-image').src = images[ganador];
 
     // Mostrar desglose de puntajes
     const s = getScores();
