@@ -74,19 +74,19 @@
 
   </div>
 
-  <script src="js/game.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', ()=>{
-      document.querySelectorAll('.decidir').forEach(btn=>{
-        btn.addEventListener('click', ()=>{
-          const ethos = btn.dataset.ethos;
-          const pts = Number(btn.dataset.points || 1);
-          const next = btn.dataset.next || 'quito2.html';
-          addPoint(ethos, pts);
-          window.location.href = next;
-        });
+<script src="js/game.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.querySelectorAll('.lugar').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const ethos = btn.dataset.ethos;
+        const pts = Number(btn.dataset.points || 1);
+        const next = btn.dataset.next || 'quito2.html';
+        addPoint(ethos, pts);
+        window.location.href = next;
       });
     });
-  </script>
+  });
+</script>
 </body>
 </html>
