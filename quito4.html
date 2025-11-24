@@ -32,13 +32,13 @@
       width: 100%;
       max-width: 700px;
       height: auto;
-      z-index: 5;
+      z-index: 5; /* Asegúrate de que esté por encima del fondo, pero no encima del diálogo */
     }
 
-    /* Contenedor de opciones */
+    /* Cuadro de opciones */
     .dialogo {
       position: relative;
-      margin-top: 60vh; /* deja espacio para que la imagen se vea completa */
+      margin-top: 250px; /* Espacio suficiente para que la imagen se vea completa */
       padding: 2rem 1rem;
       background: rgba(0, 0, 0, 0.6);
       border-top: 1px solid rgba(255,255,255,0.15);
@@ -62,6 +62,7 @@
       color: #111;
       background: linear-gradient(135deg, #ffd76f, #ff9f8b);
     }
+
     .opcion:hover {
       background: linear-gradient(135deg, #ffe69f, #ffb07b);
       transform: translateY(-3px);
