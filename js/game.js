@@ -11,7 +11,7 @@ sonidoEthos.volume = 0.6;
 
 document.addEventListener('click', () => {
   if (musicaFondo.paused) {
-    musicaFondo.play().catch(err => console.log("Audio bloqueado:", err));
+    musicaFondo.play().catch(() => {});
   }
 }, { once: true });
 
@@ -23,7 +23,9 @@ function getScores(){
   return { clasico:0, romantico:0, realista:0, barroco:0 };
 }
 
-function saveScores(s){ localStorage.setItem(KEY_SCORES, JSON.stringify(s)); }
+function saveScores(s){
+  localStorage.setItem(KEY_SCORES, JSON.stringify(s));
+}
 
 function resetScores(){
   saveScores({ clasico:0, romantico:0, realista:0, barroco:0 });
@@ -33,7 +35,9 @@ function resetScores(){
 function getHistory(){
   try {
     return JSON.parse(localStorage.getItem(KEY_HISTORY)) || [];
-  } catch(e){ return []; }
+  } catch(e){ 
+    return []; 
+  }
 }
 
 function addPoint(ethos, n=1){
@@ -62,7 +66,11 @@ function computeWinner(){
   if (empate){
     const h = getHistory();
     for (let i = h.length - 1; i >= 0; i--){
-      if (empates.includes(h[i])) { ganador = h[i]; empate = false; break; }
+      if (empates.includes(h[i])) {
+        ganador = h[i];
+        empate = false;
+        break;
+      }
     }
   }
   return { ganador, empate, ranking };
