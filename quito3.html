@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Quito — Parte 3</title>
+  <link rel="icon" type="image/png" href="imagenes/icono.png">
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      color: var(--text, #fff);
+      background: url('imagenes/enfermedad.png') no-repeat center center fixed;
+      background-size: cover;
+      overflow-x: hidden;
+      text-align: center;
+    }
+
+    .overlay {
+      background: rgba(0,0,0,0.6);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .wrap {max-width: 960px; margin: 0 auto;}
+    header {
+      background: rgba(10,10,15,0.7);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      position: relative;
+      z-index: 2;
+    }
+    header h1 {margin: 0;}
+    header .subtitle {color: #ccc; margin-top: .3rem;}
+
+    /* Imagen de la mochila fija */
+    .mochila {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 180px;
+      opacity: 0.8;
+      filter: drop-shadow(0 0 6px rgba(255,255,255,0.4));
+      animation: flotar 4s ease-in-out infinite alternate;
+      z-index: 1;
+      pointer-events: none; /* evita interferir con clics */
+    }
+
+    @keyframes flotar {
+      from { transform: translate(-50%, -50%) translateY(0px); }
+      to { transform: translate(-50%, -50%) translateY(-8px); }
+    }
+
+    .scene {
+      background: rgba(20,20,25,.75);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      padding: 1.2rem;
+      text-align: left;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      position: relative;
+      z-index: 3;
+    }
+    .scene p {margin: .8rem 0;}
+
+    /* Opciones */
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+      position: relative;
+      z-index: 3;
+    }
+
+    .ruta {
+      background: rgba(20,20,25,.6);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .lugar {
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      padding: 0.9rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ffd76f, #ff9f8b);
+      color: #111;
+      transition: all 0.3s ease;
+      width: 100%;
+      z-index: 4;
+    }
+    .lugar:hover {
+      background: linear-gradient(135deg, #ffe69f, #ffb07b);
+      transform: translateY(-2px);
+      box-shadow: 0 0 14px rgba(255,200,100,0.5);
+    }
+
+    .descripcion {
+      margin-top: 0.3rem;
+      color: #ddd;
+      font-size: 0.9rem;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="wrap">
+      <header>
+        <h1>Quito</h1>
+        <p class="subtitle">Camino al sur, bajo el último amanecer.</p>
+      </header>
+
+      <!-- Imagen fija -->
+      <img src="imagenes/mochila.png" alt="Mochila de viaje" class="mochila">
+
+      <section class="scene">
+        <p>
+          Estás decidido a irte a Riobamba en cuanto amanezca.  
+          El refugio ya no te protege, solo retrasa lo inevitable.  
+          Tu mochila está lista. El aire huele a metal quemado.  
+        </p>
+        <p>
+          ¿Qué ruta tomarás para llegar?
+        </p>
+      </section>
+
+      <main class="choices">
+        <div class="ruta">
+          <button id="op1" class="lugar" data-next="pre_final.html">
+            🚧 Quito – Tambillo
+          </button>
+          <p class="descripcion">
+            Es la vía principal, pavimentada y con antiguos puestos de control.  
+            Hay pasos técnicos y zonas pobladas, pero no sabes si aún son seguras…  
+            ni si la carretera sigue en pie.
+          </p>
+        </div>
+
+        <div class="ruta">
+          <button id="op2" class="lugar" data-next="pre_final.html">
+            🌿 Quito – Machachi
+          </button>
+          <p class="descripcion">
+            Evitas la autopista principal. Es un camino más solitario y, por eso mismo, más seguro.  
+            Aun así, podría ser difícil conseguir recursos en el trayecto.
+          </p>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/game.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+      document.querySelectorAll('.lugar').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const next = btn.dataset.next;
+
+          // Reglas especiales de puntos
+          if(btn.id === 'op1'){ 
+            addPoint('clasico',1);
+            addPoint('realista',1);
+          } 
+          else if(btn.id === 'op2'){ 
+            addPoint('barroco',1);
+            addPoint('romantico',1);
+          }
+
+          window.location.href = next;
+        });
+      });
+    });
+  </script>
+</body>
+</html>
