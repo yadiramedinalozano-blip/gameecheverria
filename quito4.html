@@ -1,111 +1,63 @@
-<!doctype html>
-<html lang="es">
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Colapso Sur — Quito 4</title>
-  <link rel="icon" type="image/png" href="imagenes/icono.png">
-  <link rel="stylesheet" href="style.css"/>
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    margin: 0;
+    color: var(--text, #fff);
+    background: #000 url('imagenes/enfermedad.png') no-repeat center center fixed;
+    background-size: cover;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    text-align: center;
+  }
 
-  <style>
-    body {
-      font-family: system-ui, sans-serif;
-      margin: 0;
-      color: var(--text, #fff);
-      background: #000 url('imagenes/enfermedad.png') no-repeat center center fixed;
-      background-size: cover;
-      overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
-      text-align: center;
-    }
+  /* Imagen fija arriba (ajustada para no superponerse) */
+  .personaje {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    z-index: 1;  /* Asegúrate de que esté debajo del contenido de las opciones */
+  }
 
-    /* Imagen fija arriba */
-    .personaje {
-      position: fixed;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 700px;
-      height: auto;
-      z-index: 5; /* Asegúrate de que esté por encima del fondo, pero no encima del diálogo */
-    }
+  /* Cuadro de opciones (ajustado para no superponerse con la imagen del personaje) */
+  .dialogo {
+    position: relative;
+    margin-top: 220px; /* Ajusta este valor según el tamaño de la imagen */
+    padding: 2rem 1rem;
+    background: rgba(0, 0, 0, 0.6);
+    border-top: 1px solid rgba(255,255,255,0.15);
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    border-radius: 12px 12px 0 0;
+    z-index: 2;  /* Asegúrate de que las opciones estén por encima de la imagen */
+  }
 
-    /* Cuadro de opciones */
-    .dialogo {
-      position: relative;
-      margin-top: 250px; /* Espacio suficiente para que la imagen se vea completa */
-      padding: 2rem 1rem;
-      background: rgba(0, 0, 0, 0.6);
-      border-top: 1px solid rgba(255,255,255,0.15);
-      width: 100%;
-      max-width: 800px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-      border-radius: 12px 12px 0 0;
-    }
+  .opcion {
+    display: block;
+    width: 100%;
+    margin: 0.8rem 0;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #111;
+    background: linear-gradient(135deg, #ffd76f, #ff9f8b);
+  }
 
-    .opcion {
-      display: block;
-      width: 100%;
-      margin: 0.8rem 0;
-      padding: 1rem;
-      font-size: 1rem;
-      font-weight: 700;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      color: #111;
-      background: linear-gradient(135deg, #ffd76f, #ff9f8b);
-    }
-
-    .opcion:hover {
-      background: linear-gradient(135deg, #ffe69f, #ffb07b);
-      transform: translateY(-3px);
-      box-shadow: 0 0 15px rgba(255,200,120,0.5);
-    }
-  </style>
-</head>
-
-<body>
-  <!-- Imagen del personaje -->
-  <img src="imagenes/personaje.png" alt="Personaje del diálogo" class="personaje">
-
-  <!-- Cuadro con las opciones -->
-  <div class="dialogo">
-    <button class="opcion" data-ethos="realista" data-next="dialogo.html">
-      No puedo. Ya tengo suficiente con lo que cargo. Si vienes, me retrasas.
-    </button>
-
-    <button class="opcion" data-ethos="romantico" data-next="dialogo.html">
-      No… no puedo llevarte. Este camino es mío, y si vienes, sufrirás lo que yo no quiero que nadie sufra.
-    </button>
-
-    <button class="opcion" data-ethos="clasico" data-next="dialogo.html">
-      No sería justo. No tengo medios para asegurar tu vida, y sería irresponsable prometerte lo contrario.
-    </button>
-
-    <button class="opcion" data-ethos="barroco" data-next="dialogo.html">
-      ¿Llevarte? Mejor quédate y di que me viste partir. Así sobrevivimos los dos… cada uno a su manera.
-    </button>
-  </div>
-
-  <script src="js/game.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', ()=>{
-      document.querySelectorAll('.opcion').forEach(btn=>{
-        btn.addEventListener('click', ()=>{
-          const ethos = btn.dataset.ethos;
-          const next = btn.dataset.next || 'dialogo.html';
-          addPoint(ethos, 1);
-          window.location.href = next;
-        });
-      });
-    });
-  </script>
-</body>
-</html>
+  .opcion:hover {
+    background: linear-gradient(135deg, #ffe69f, #ffb07b);
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(255,200,120,0.5);
+  }
+</style>
