@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="style.css"/>
 
   <style>
+    /* ESTILOS GENERALES Y DE FONDO */
     body {
       font-family: system-ui, sans-serif;
       margin: 0;
@@ -23,20 +24,35 @@
       text-align: center;
     }
 
-    .personaje {
-      position: fixed;
+    /* 📸 ENCABEZADO FIJO DEL PERSONAJE (Personaje2.png) */
+    .personaje-header {
+      position: fixed; /* Lo mantiene en su lugar al hacer scroll */
       top: 0;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 0;
       width: 100%;
-      max-width: 700px;
-      height: auto;
-      z-index: 5;
+      height: 65vh; /* Altura que ocupará el personaje en la pantalla */
+      
+      /* Configuración del Personaje 2 como imagen de fondo */
+      background: 
+        linear-gradient(to top, rgba(0,0,0,0.5), transparent 50%), /* Degradado sutil para integrar el diálogo */
+        url('imagenes/personaje2.png') no-repeat center bottom; 
+      
+      background-size: contain; /* Asegura que el personaje se vea completo */
+      background-repeat: no-repeat;
+      background-position: center bottom; /* Centra la imagen y la pega abajo del header */
+      background-color: #000; 
+      z-index: 5; /* Asegura que el personaje esté detrás del diálogo */
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
     }
+    
+    /* Nota: Se eliminó la regla .personaje que causaba conflicto */
 
+    /* CONTENEDOR DE OPCIONES/DIÁLOGO */
     .dialogo {
       position: relative;
-      margin-top: 65vh;
+      /* CLAVE: Empieza justo debajo del .personaje-header (65vh) */
+      margin-top: 65vh; 
       padding: 2rem 1rem;
       background: rgba(0, 0, 0, 0.6);
       border-top: 1px solid rgba(255,255,255,0.15);
@@ -44,6 +60,7 @@
       max-width: 800px;
       box-shadow: 0 0 20px rgba(0,0,0,0.5);
       border-radius: 12px 12px 0 0;
+      z-index: 10; /* Asegura que el diálogo se vea encima del fondo/personaje */
     }
 
     .opcion {
@@ -69,10 +86,8 @@
 </head>
 
 <body>
-  <!-- Imagen del personaje -->
-  <img src="imagenes/personaje2.png" alt="Personaje del diálogo" class="personaje">
+  <div class="personaje-header"></div> 
 
-  <!-- Cuadro del diálogo -->
   <div class="dialogo">
     <button class="opcion" id="continuar">...</button>
   </div>
