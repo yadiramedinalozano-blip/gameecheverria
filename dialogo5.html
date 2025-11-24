@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Colapso Sur — Diálogo 5</title>
+  <link rel="icon" type="image/png" href="imagenes/icono.png">
+  <link rel="stylesheet" href="style.css"/>
+
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      color: var(--text, #fff);
+      background: #000 url('imagenes/enfermedad.png') no-repeat center center fixed;
+      background-size: cover;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    .personaje {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 700px;
+      height: auto;
+      z-index: 5;
+    }
+
+    .contenido {
+      position: relative;
+      margin-top: 60vh;
+      background: rgba(0, 0, 0, 0.6);
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding: 2rem 1rem 3rem;
+      width: 100%;
+      max-width: 800px;
+      border-radius: 12px 12px 0 0;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 1.8rem;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+
+    button {
+      background: linear-gradient(135deg, #ffd76f, #ff9f8b);
+      border: none;
+      border-radius: 10px;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      color: #111;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #ffe69f, #ffb07b);
+      transform: translateY(-3px);
+      box-shadow: 0 0 15px rgba(255,200,120,0.5);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Imagen del personaje -->
+  <img src="imagenes/personaje5.png" alt="Personaje del diálogo" class="personaje">
+
+  <!-- Contenido -->
+  <div class="contenido">
+    <h2>¿Estás listo para iniciar tu aventura?</h2>
+    <button id="iniciar">Sí</button>
+  </div>
+
+  <script>
+    document.getElementById('iniciar').addEventListener('click', ()=>{
+      window.location.href = 'pre_final.html';
+    });
+  </script>
+</body>
+</html>
