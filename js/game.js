@@ -2,18 +2,8 @@ const KEY_SCORES   = 'ethos_scores_v1';
 const KEY_HISTORY  = 'ethos_history_v1';
 const ETHOS_LIST   = ['clasico','romantico','realista','barroco'];
 
-const musicaFondo = new Audio('fondogame.mp3');
-musicaFondo.loop = true;
-musicaFondo.volume = 0.4;
-
 const sonidoEthos = new Audio('boton.mp3');
 sonidoEthos.volume = 0.6;
-
-document.addEventListener('click', () => {
-  if (musicaFondo.paused) {
-    musicaFondo.play().catch(() => {});
-  }
-}, { once: true });
 
 function getScores(){
   try {
