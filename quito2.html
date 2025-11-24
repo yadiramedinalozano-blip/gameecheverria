@@ -73,24 +73,41 @@
       margin-top: 2rem;
     }
 
-    /* Botones con efecto */
-    .opcion {
-      border: none;
+    .vehiculo {
+      background: rgba(20,20,25,.6);
+      border: 1px solid rgba(255,255,255,.15);
       border-radius: 12px;
-      cursor: pointer;
       padding: 1rem;
-      font-size: 1rem;
+      text-align: center;
+      height: 210px; /* 🔧 mismo alto */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Botones con efecto */
+    .lugar {
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      padding: 0.9rem;
+      font-size: 1.05rem;
       font-weight: 700;
-      text-align: left;
-      line-height: 1.4;
       background: linear-gradient(135deg, #ffd76f, #ff9f8b);
       color: #111;
       transition: all 0.3s ease;
     }
-    .opcion:hover {
+    .lugar:hover {
       background: linear-gradient(135deg, #ffe69f, #ffb07b);
-      transform: translateY(-3px);
-      box-shadow: 0 0 18px rgba(255,200,100,0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 0 14px rgba(255,200,100,0.5);
+    }
+
+    .descripcion {
+      margin-top: 0.7rem;
+      color: #ddd;
+      font-size: 0.9rem;
+      pointer-events: none;
     }
   </style>
 </head>
@@ -163,14 +180,14 @@
       const intro = document.getElementById('intro');
       const overlay = document.getElementById('contenido');
 
-      // Mostrar imagen inicial, luego desaparecerla y mostrar el texto
+      // Imagen inicial con fade
       setTimeout(()=>{
         intro.classList.add('fade-out');
         overlay.classList.add('visible');
       }, 800);
 
       // Decisiones
-      document.querySelectorAll('.decidir').forEach(btn=>{
+      document.querySelectorAll('.lugar').forEach(btn=>{
         btn.addEventListener('click', ()=>{
           const ethos = btn.dataset.ethos;
           const pts = Number(btn.dataset.points || 1);
