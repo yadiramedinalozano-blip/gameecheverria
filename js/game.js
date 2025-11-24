@@ -1,7 +1,19 @@
-// ====== Estado de puntajes e historial ======
 const KEY_SCORES   = 'ethos_scores_v1';
-const KEY_HISTORY  = 'ethos_history_v1'; // para desempates y analytics
+const KEY_HISTORY  = 'ethos_history_v1';
 const ETHOS_LIST   = ['clasico','romantico','realista','barroco'];
+
+const musicaFondo = new Audio('fondogame.mp3');
+musicaFondo.loop = true;
+musicaFondo.volume = 0.4;
+
+const sonidoEthos = new Audio('boton.mp3');
+sonidoEthos.volume = 0.6;
+
+document.addEventListener('click', () => {
+  if (musicaFondo.paused) {
+    musicaFondo.play().catch(err => console.log("Audio bloqueado:", err));
+  }
+}, { once: true });
 
 function getScores(){
   try {
@@ -10,23 +22,12 @@ function getScores(){
   } catch(e){}
   return { clasico:0, romantico:0, realista:0, barroco:0 };
 }
+
 function saveScores(s){ localStorage.setItem(KEY_SCORES, JSON.stringify(s)); }
 
 function resetScores(){
   saveScores({ clasico:0, romantico:0, realista:0, barroco:0 });
   localStorage.setItem(KEY_HISTORY, JSON.stringify([]));
-}
-
-// Añadir puntos a un ethos. n por defecto =1
-function addPoint(ethos, n=1){
-  const s = getScores();
-  if(!ETHOS_LIST.includes(ethos)) return;
-  s[ethos] = (s[ethos] || 0) + Number(n);
-  saveScores(s);
-  // guardar historia
-  const h = getHistory();
-  h.push(ethos);
-  localStorage.setItem(KEY_HISTORY, JSON.stringify(h));
 }
 
 function getHistory(){
@@ -35,7 +36,20 @@ function getHistory(){
   } catch(e){ return []; }
 }
 
-// Devuelve {ganador, empate:boolean, ranking:[{k,v}...]}
+function addPoint(ethos, n=1){
+  const s = getScores();
+  if(!ETHOS_LIST.includes(ethos)) return;
+  s[ethos] = (s[ethos] || 0) + Number(n);
+  saveScores(s);
+
+  const h = getHistory();
+  h.push(ethos);
+  localStorage.setItem(KEY_HISTORY, JSON.stringify(h));
+
+  sonidoEthos.currentTime = 0;
+  sonidoEthos.play();
+}
+
 function computeWinner(){
   const s = getScores();
   const ranking = ETHOS_LIST.map(k => ({k, v:s[k]}))
@@ -45,7 +59,6 @@ function computeWinner(){
   let ganador = ranking[0].k;
   let empate = empates.length > 1;
 
-  // Desempate: usa el último ethos elegido de la historia
   if (empate){
     const h = getHistory();
     for (let i = h.length - 1; i >= 0; i--){
@@ -55,12 +68,11 @@ function computeWinner(){
   return { ganador, empate, ranking };
 }
 
-// Helper: vincula todos los botones .decidir con data-ethos y data-points
 function bindDecisionButtons(nextHref=null){
   document.querySelectorAll('.decidir[data-ethos]').forEach(btn=>{
     btn.addEventListener('click', ()=>{
-      const ethos = btn.dataset.ethos;                 // clasico|romantico|realista|barroco
-      const pts   = Number(btn.dataset.points || 1);   // opcional
+      const ethos = btn.dataset.ethos;
+      const pts   = Number(btn.dataset.points || 1);
       addPoint(ethos, pts);
       if (nextHref) window.location.href = nextHref;
     });
