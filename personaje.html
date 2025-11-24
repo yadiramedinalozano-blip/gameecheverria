@@ -3,40 +3,95 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Elige tu personaje — Colapso sur</title>
+  <title>Elige tu personaje — Colapso Sur</title>
   <link rel="icon" type="image/png" href="imagenes/icono.png">
   <link rel="stylesheet" href="style.css"/>
   <style>
     .wrap{max-width:960px;margin:0 auto}
-    .hero-img{display:block;width:100%;max-width:960px;margin:0 auto 1rem auto;border-radius:10px;
-      border:1px solid rgba(255,255,255,.12);box-shadow:0 6px 18px rgba(0,0,0,.25)}
-    .context{background:rgba(20,20,25,.55);border:1px solid rgba(255,255,255,.12);
-      border-radius:12px;padding:1rem 1.2rem;margin:0 auto 1rem auto;text-align:left}
+    .hero-img{
+      display:block;
+      width:100%;
+      max-width:960px;
+      margin:0 auto 1rem auto;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 6px 18px rgba(0,0,0,.25);
+    }
+    .context{
+      background:rgba(20,20,25,.55);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:12px;
+      padding:1rem 1.2rem;
+      margin:0 auto 1rem auto;
+      text-align:left;
+    }
     .context p{margin:.6rem 0}
-    .grid{display:grid;gap:1rem;margin-top:1rem}
+    .grid{display:grid;gap:1.5rem;margin-top:1rem}
     @media(min-width:900px){ .grid{grid-template-columns:repeat(2,1fr)} }
 
-    .card{background:rgba(20,20,25,.55);border:1px solid rgba(255,255,255,.12);
-      border-radius:12px;padding:1rem;text-align:left}
+    .card{
+      background:rgba(20,20,25,.55);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:12px;
+      padding:1rem;
+      text-align:left;
+      transition:transform .3s ease, box-shadow .3s ease;
+    }
+    .card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 8px 20px rgba(0,0,0,.4);
+    }
+
+    .char{
+      display:flex;
+      align-items:flex-start;
+      gap:1rem;
+    }
+
+    /* 🔥 Imagen de personaje más grande */
+    .avatar{
+      width:140px;
+      height:140px;
+      object-fit:cover;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.15);
+      box-shadow:0 0 12px rgba(0,0,0,.4);
+      transition:transform .3s ease;
+    }
+    .card:hover .avatar{
+      transform:scale(1.05);
+    }
+
     .card h3{margin:.2rem 0 .4rem}
     .card p{margin:0 0 .8rem;color:var(--muted)}
 
-    .char{display:flex;align-items:flex-start;gap:1rem}
-    .avatar{width:80px;height:80px;object-fit:cover;border-radius:10px;
-      border:1px solid rgba(255,255,255,.15);box-shadow:0 0 8px rgba(0,0,0,.3)}
+    /* ✨ Botones con hover */
+    .choice{
+      display:inline-block;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#111;
+      border:none;
+      border-radius:.6rem;
+      padding:.6rem 1.1rem;
+      font-weight:700;
+      cursor:pointer;
+      transition:all .25s ease;
+    }
+    .choice:hover{
+      background:linear-gradient(135deg,#ffd166,#ff8c42);
+      color:#000;
+      transform:translateY(-2px);
+      box-shadow:0 8px 18px rgba(0,0,0,.25);
+    }
 
-    .choice{display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent2));
-      color:#111;border:none;border-radius:.6rem;padding:.55rem .9rem;font-weight:700;cursor:pointer}
-    .choice:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,.25)}
     .msg{margin-top:1rem;color:var(--muted);text-align:center}
   </style>
 </head>
+
 <body>
   <div class="container wrap">
-    <!-- Imagen de ciudad al inicio -->
     <img src="imagenes/ciudad.png" alt="Ciudad tras el colapso" class="hero-img"/>
 
-    <!-- Contexto histórico -->
     <section class="context">
       <h2 style="margin:.2rem 0 .6rem 0;">Colapso ecológico · 2040</h2>
       <p>
@@ -59,59 +114,45 @@
     </header>
 
     <main class="grid">
-      <!-- Clásico -->
       <article class="card">
         <div class="char">
           <img src="imagenes/durmiente.png" alt="Durmiente" class="avatar">
           <div>
             <h3>Durmientes</h3>
-            <p>Meses bajo cielos quemados activaron una luminiscencia en su piel. La superficie se
-              cuarteó con polvo y barro; al dormir, sus cuerpos se petrifican como estatuas antiguas, y,
-              aun en el fin del mundo, se mantienen bellos y majestuosos. Conservan su forma humana
-              en la medida de lo posible.</p>
+            <p>Meses bajo cielos quemados activaron una luminiscencia en su piel...</p>
             <button class="choice" data-ethos="clasico" data-name="Durmiente">Elegir Durmiente</button>
           </div>
         </div>
       </article>
 
-      <!-- Barroco -->
       <article class="card">
         <div class="char">
           <img src="imagenes/errante.png" alt="Errante" class="avatar">
           <div>
             <h3>Errantes</h3>
-            <p>De los derrumbes surgieron cuerpos hechos de fibras, telas, metales, pelaje y hueso. No quedó
-              pureza: solo una mezcla funcional que aprendió a resistir con branquias y pulmones.
-              Cada uno mutó de forma distinta, y no existen adjetivos capaces de describirlos con
-              exactitud</p>
+            <p>De los derrumbes surgieron cuerpos hechos de fibras, telas, metales...</p>
             <button class="choice" data-ethos="barroco" data-name="Errante">Elegir Errante</button>
           </div>
         </div>
       </article>
 
-      <!-- Romántico -->
       <article class="card">
         <div class="char">
           <img src="imagenes/fungi.png" alt="Fungi" class="avatar">
           <div>
             <h3>Fungis</h3>
-            <p>Las lluvias ácidas abrieron paso al micelio. Esporas bioluminiscentes se mezclaron con
-              cuerpos vivos; sus rostros tristes recuerdan lo perdido y contemplan el nuevo mundo 
-              con una profunda visión artística y nostálgica.</p>
+            <p>Las lluvias ácidas abrieron paso al micelio...</p>
             <button class="choice" data-ethos="romantico" data-name="Fungi">Elegir Fungi</button>
           </div>
         </div>
       </article>
 
-      <!-- Realista -->
       <article class="card">
         <div class="char">
           <img src="imagenes/zombie.png" alt="Residual" class="avatar">
           <div>
             <h3>Residuales</h3>
-            <p>El destino de muchos seres humanos, tras el primer apagón global, fue seguir trabajando.
-              Porque, aunque exista el fin del mundo, su puesto de “empleado del mes” sigue siendo
-               más importante. Olvidó cómo vivir; ya no busca cerebros, busca informes.</p>
+            <p>El destino de muchos seres humanos, tras el primer apagón global...</p>
             <button class="choice" data-ethos="realista" data-name="Residual">Elegir Residual</button>
           </div>
         </div>
@@ -121,16 +162,17 @@
     <p class="msg" id="msg">Elige uno para continuar…</p>
   </div>
 
-<script src="js/game.js"></script>
-<script>
-  document.querySelectorAll('.choice').forEach(b=>{
-    b.addEventListener('click', ()=>{
-      const ethos = b.dataset.ethos;
-      const choice = { nombre: b.dataset.name, ethos };
-      localStorage.setItem('ethos_choice_v1', JSON.stringify(choice));
-      addPoint(ethos, 1); // ← suma 1 punto según el personaje elegido
-      window.location.href = 'ciudades.html';
+  <script src="js/game.js"></script>
+  <script>
+    document.querySelectorAll('.choice').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        const ethos = b.dataset.ethos;
+        const choice = { nombre: b.dataset.name, ethos };
+        localStorage.setItem('ethos_choice_v1', JSON.stringify(choice));
+        addPoint(ethos, 1);
+        window.location.href = 'ciudades.html';
+      });
     });
-  });
-</script>
-
+  </script>
+</body>
+</html>
