@@ -17,6 +17,34 @@
       text-align: center;
     }
 
+    /* 📌 Encabezado fijo con la mochila */
+    .mochila-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(10,10,15,0.8);
+      backdrop-filter: blur(6px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.8rem 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    }
+
+    .mochila-header img {
+      width: 140px;
+      height: auto;
+      filter: drop-shadow(0 0 8px rgba(255,255,255,0.5));
+    }
+
+    /* Para que el resto del contenido no se oculte bajo el header */
+    .contenido {
+      padding-top: 160px;
+    }
+
     .overlay {
       background: rgba(0,0,0,0.6);
       min-height: 100vh;
@@ -28,26 +56,13 @@
       background: rgba(10,10,15,0.7);
       border-radius: 12px;
       padding: 1rem;
-      margin-bottom: 5rem;
+      margin-bottom: 2rem;
       box-shadow: 0 0 10px rgba(0,0,0,0.4);
       position: relative;
       z-index: 2;
     }
     header h1 {margin: 0;}
     header .subtitle {color: #ccc; margin-top: .3rem;}
-
-    /* 📦 Imagen fija al centro absoluto */
-    .mochila {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 220px;
-      opacity: 1;
-      filter: drop-shadow(0 0 10px rgba(255,255,255,0.6));
-      z-index: 5;
-      pointer-events: none;
-    }
 
     .scene {
       background: rgba(20,20,25,.75);
@@ -57,8 +72,6 @@
       text-align: left;
       margin-bottom: 2rem;
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
-      position: relative;
-      z-index: 3;
     }
     .scene p {margin: .8rem 0;}
 
@@ -67,8 +80,6 @@
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 1.5rem;
       margin-top: 2rem;
-      position: relative;
-      z-index: 3;
     }
 
     .ruta {
@@ -110,15 +121,17 @@
   </style>
 </head>
 <body>
-  <div class="overlay">
+  <!-- 🧭 Encabezado fijo -->
+  <div class="mochila-header">
+    <img src="imagenes/mochila.png" alt="Mochila fija en el encabezado">
+  </div>
+
+  <div class="overlay contenido">
     <div class="wrap">
       <header>
         <h1>Quito</h1>
         <p class="subtitle">Camino al sur, bajo el último amanecer.</p>
       </header>
-
-      <!-- Imagen fija -->
-      <img src="imagenes/mochila.png" alt="Mochila de viaje" class="mochila">
 
       <section class="scene">
         <p>
